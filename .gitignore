@@ -17,3 +17,6 @@ PrecompiledWeb
 *.mdf
 *.swx
 .dotest
+*.pidb
+*.userprefs
+*.usertasks
