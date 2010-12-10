@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 // <copyright file="HostProcessedRequest.cs" company="Andrew Arnott">
 //     Copyright (c) Andrew Arnott. All rights reserved.
 // </copyright>
@@ -94,7 +94,7 @@ namespace DotNetOpenAuth.OpenId.Provider {
 		/// Gets the original request message.
 		/// </summary>
 		/// <value>This may be null in the case of an unrecognizable message.</value>
-		protected new SignedResponseRequest RequestMessage {
+		protected internal new SignedResponseRequest RequestMessage {
 			get { return (SignedResponseRequest)base.RequestMessage; }
 		}
 
