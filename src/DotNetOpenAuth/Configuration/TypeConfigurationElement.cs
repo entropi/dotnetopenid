@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 // <copyright file="TypeConfigurationElement.cs" company="Andrew Arnott">
 //     Copyright (c) Andrew Arnott. All rights reserved.
 // </copyright>
@@ -11,6 +11,9 @@ namespace DotNetOpenAuth.Configuration {
 	using System.Reflection;
 	using System.Web;
 	using System.Windows.Markup;
+#if !Mono
+	using System.Xaml;
+#endif
 	using DotNetOpenAuth.Messaging;
 
 	/// <summary>
@@ -93,6 +96,7 @@ namespace DotNetOpenAuth.Configuration {
 					ErrorUtilities.VerifyArgument((this.CustomType.Attributes & TypeAttributes.Public) != 0, Strings.ConfigurationTypeMustBePublic, this.CustomType.FullName);
 				}
 				return (T)Activator.CreateInstance(this.CustomType);
+#if !Mono
 			} else if (!string.IsNullOrEmpty(this.XamlSource)) {
 				string source = this.XamlSource;
 				if (source.StartsWith("~/", StringComparison.Ordinal)) {
@@ -102,11 +106,12 @@ namespace DotNetOpenAuth.Configuration {
 				using (Stream xamlFile = File.OpenRead(source)) {
 					return CreateInstanceFromXaml(xamlFile);
 				}
+#endif
 			} else {
 				return defaultValue;
 			}
 		}
-
+#if !Mono
 		/// <summary>
 		/// Creates the instance from xaml.
 		/// </summary>
@@ -122,5 +127,6 @@ namespace DotNetOpenAuth.Configuration {
 		private static T CreateInstanceFromXaml(Stream xaml) {
 			return (T)XamlReader.Load(xaml);
 		}
+#endif
 	}
 }

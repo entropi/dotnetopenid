@@ -3,7 +3,7 @@
 //     Copyright (c) Andrew Arnott. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
-
+#if !Mono
 [assembly: System.Web.UI.WebResource(DotNetOpenAuth.OpenId.RelyingParty.OpenIdMobileTextBox.EmbeddedLogoResourceName, "image/gif")]
 
 namespace DotNetOpenAuth.OpenId.RelyingParty {
@@ -770,3 +770,4 @@ namespace DotNetOpenAuth.OpenId.RelyingParty {
 		}
 	}
 }
+#endif
